@@ -107,7 +107,7 @@ const Popup = (props) => {
             />
             <input
               className="input-loginsignup"
-              type="text"
+              type="password"
               placeholder="Confirmer le mot de passe"
               required
 			  ref={passwordAgain}
