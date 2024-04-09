@@ -1,0 +1,256 @@
+.contactusform__body {
+    width: 100%;
+    background: #d6dfe8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.contactusform__body h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+/* hr {
+    height: 5px;
+} */
+
+.nometprenomcontactform {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.np-flex {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.np-flex label {
+    color:#000d6b;
+    font-size: 1.5rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.np-flex input {
+    width: 280px;
+    line-height: 1.5rem;
+    font-size: 1.1rem;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.np-flex input:focus {
+    outline: none;
+}
+
+.mail-container-contactform {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.mail-container-contactform label {
+    color:#000d6b;
+    font-size: 1.5rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+.mail-container-contactform input {
+    width: 100%;
+    margin-bottom: 1rem;
+    line-height: 1.5rem;
+    font-size: 1.1rem;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+.mail-container-contactform input:focus {
+    outline: none;
+}
+
+
+.textarea-container-contactform {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.textarea-container-contactform label {
+    color:#000d6b;
+    font-size: 1.5rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-weight: 500;
+
+}
+
+.button-container-contactform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-form-button {
+    cursor:pointer;
+    padding: 0.3rem 1rem 0.35rem 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    border-radius: 10px;
+    border: 1px solid rgb(50, 14, 97);
+    color: #fff;
+	background: #573b8a;
+    font-weight: bold;
+    outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+
+.contact-form-button:hover{
+    background: #6d44b8;
+}
+.formcss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.textareasmallscreens {
+    height: 400px;
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .nometprenomcontactform {
+        gap: 1rem;
+        justify-content: space-evenly;
+    }
+    
+    .np-flex {
+        width: 220px;
+        
+    }
+    
+    
+    .np-flex input {
+        width: 100%;
+    }
+
+    
+    .mail-container-contactform {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    
+
+    .mail-container-contactform input {
+        width: 460px;
+    }
+    
+    .textarea-container-contactform {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+    
+    .textarea-container-contactform label {
+        color:#000d6b;
+        font-size: 1.5rem;
+        margin: 0;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        font-weight: 500;
+    
+    }
+    
+    .button-container-contactform {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    .textareasmallscreens {
+        width: 460px;
+        height: 400px;
+    }
+ 
+}
+
+@media screen and (max-width: 470px) {
+
+    .nometprenomcontactform {
+        gap: 1rem;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+    
+    .np-flex {
+        width: 250px;
+        
+    }
+    
+    
+    .np-flex input {
+        width: 100%;
+    }
+
+    
+    .mail-container-contactform {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    
+
+    .mail-container-contactform input {
+        width: 260px;
+    }
+    
+    .textarea-container-contactform {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        align-items: center;
+    }
+    
+    .textarea-container-contactform label {
+        color:#000d6b;
+        font-size: 1.5rem;
+        margin: 0;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        font-weight: 500;
+    
+    }
+    
+    .button-container-contactform {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    .textareasmallscreens {
+        width: 260px;
+        height: 300px;
+    }
+ 
+}

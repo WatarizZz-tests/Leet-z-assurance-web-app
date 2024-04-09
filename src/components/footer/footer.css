@@ -1,0 +1,26 @@
+.footer-container {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(90deg,hsl(218, 73%, 6%),#222d41,hsl(218, 73%, 6%));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}
+
+.footer-container p {
+    color: white;
+    letter-spacing: 0.02em;
+    font-size: 0.8rem;
+}
+
+.footer-container img {
+    width: 220px;
+    margin-top: 1.1rem;
+}
+.footer-container h6 {
+    color: white;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
