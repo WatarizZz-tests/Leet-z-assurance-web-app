@@ -13,6 +13,7 @@ import moment from 'moment';
 import { format } from 'date-fns';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { initializeApp } from "firebase/app";
+import fr from 'date-fns/locale/fr';
 
 const Accident = () => {
   const { user } = useContext(AuthContext);
@@ -39,6 +40,18 @@ const Accident = () => {
 
   const firebaseApp = initializeApp(firebaseConfig);
   const storage = getStorage(firebaseApp);
+
+
+   const handleDateChange = (date) => {
+    setStartDate(date || new Date()); // Set startDate to null if date is falsy( actually not really null but this way you can type a new one)
+  };
+
+  const handleDateeChange = (date) => {
+    setStartDatee(date || new Date()); // Set startDatee to null if date is falsy( actually not really null but this way you can type a new one)
+  };
+  const handleDateeeChange = (date) => {
+    setStartDateee(date || new Date()); // Set startDateee to null if date is falsy( actually not really null but this way you can type a new one)
+  };
 
 
 
@@ -333,7 +346,9 @@ const Accident = () => {
                     <DatePicker
                       required
                       selected={startDate}
-                      onChange={(date) => setStartDate(date)}
+                      onChange={handleDateChange}
+                      dateFormat="dd MMMM yyyy"
+                      locale={fr}
                     />
                   </div>
                   <div className="dateeffet-dateexpiration-declarationaccidente">
@@ -341,7 +356,9 @@ const Accident = () => {
                     <DatePicker
                       required
                       selected={startDatee}
-                      onChange={(date) => setStartDatee(date)}
+                       onChange={handleDateeChange}
+                      dateFormat="dd MMMM yyyy"
+                      locale={fr} 
                       minDate={startDate || undefined} // Set minDate to the start date
                     />
                   </div>
@@ -424,7 +441,9 @@ const Accident = () => {
                     <DatePicker
                       required
                       selected={startDateee}
-                      onChange={(date) => setStartDateee(date)}
+                      onChange={handleDateeeChange}
+                      dateFormat="dd MMMM yyyy"
+                      locale={fr} 
                     />
                   </div>
                   <div className="dateeffet-dateexpiration-declarationaccidente">
