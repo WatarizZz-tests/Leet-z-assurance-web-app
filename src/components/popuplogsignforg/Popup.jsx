@@ -103,7 +103,7 @@ const Popup = (props) => {
               placeholder="Mot de passe"
               required
               ref={passwordregister}
-              minLength="6"
+              minLength="8"
             />
             <input
               className="input-loginsignup"
