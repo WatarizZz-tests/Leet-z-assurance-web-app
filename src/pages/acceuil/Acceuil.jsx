@@ -9,11 +9,6 @@ import { IoDocumentText } from "react-icons/io5";
 import Footer from '../../components/footer/Footer';
 import { Link } from 'react-router-dom';
 
-// const handleScrollToTop = () => {
-//   window.scrollTo({top: 0, behavior:"smooth"});
-// }
-
-
 
 const Acceuil = () => {
   return (
