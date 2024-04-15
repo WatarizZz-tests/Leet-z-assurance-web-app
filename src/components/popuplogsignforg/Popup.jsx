@@ -8,9 +8,10 @@ import { Link } from "react-router-dom";
 
 
 const Popup = (props) => {
-	const [endInscription,setEndInscription] = useState(false);
-  const [popChecked,setPopChecked] = useState(false);
+  const [endInscription, setEndInscription] = useState(false);
+  const [popChecked, setPopChecked] = useState(false);
   const [error, setError] = useState("");
+  const [capsLockActivated, setCapsLockActivated] = useState(false);
   const BASE_URL = 'https://insurance-api-bic3.onrender.com';
 
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Popup = (props) => {
   const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post( `${BASE_URL}/api/auth/login`, userCredential);
+      const res = await axios.post(`${BASE_URL}/api/auth/login`, userCredential);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate('/');
     } catch (err) {
@@ -34,24 +35,46 @@ const Popup = (props) => {
       }
     }
   };
- 
+
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    if (!validatePassword(password)) {
+
+      passwordregister.current.setCustomValidity('Le mot de passe doit contenir au moins une majuscule et un chiffre.');
+    } else {
+
+      passwordregister.current.setCustomValidity('');
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    setCapsLockActivated(e.getModifierState && e.getModifierState('CapsLock'));
+  };
+
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return regex.test(password);
+  };
+
+
+
   const username = useRef();
   const email = useRef();
   const password = useRef();
   const emailregister = useRef();
-  const passwordregister= useRef();
+  const passwordregister = useRef(null);
   const passwordAgain = useRef();
   const { user, isFetching, dispatch } = useContext(AuthContext);
   const handleClick = (e) => {
     e.preventDefault();
     loginCall({ email: email.current.value, password: password.current.value }, dispatch);
-   
+
   };
 
   const handleClicke = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== passwordregister.current.value) {
-      passwordAgain.current.setCustomValidity("Passwords don't match!");
+      passwordAgain.current.setCustomValidity("Le mot de passe ne correspond pas !");
     } else {
       const user = {
         username: username.current.value,
@@ -59,15 +82,15 @@ const Popup = (props) => {
         password: passwordregister.current.value,
       };
       try {
-        await axios.post(  `${BASE_URL}/api/auth/register`, user);
-		setEndInscription(true);
+        await axios.post(`${BASE_URL}/api/auth/register`, user);
+        setEndInscription(true);
 
       } catch (err) {
         console.log(err);
       }
     }
   };
-  
+
   console.log(user);
 
 
@@ -86,43 +109,54 @@ const Popup = (props) => {
             <label htmlFor="chk" onClick={() => setPopChecked(!popChecked)} aria-hidden="true">
               S'inscrire
             </label>
-			<input
+            <input
               className="input-loginsignup"
               type="text"
               name="username"
               placeholder="Nom d'utilisateur"
               required
-			  ref={username}
+              ref={username}
             />
             <input
               className="input-loginsignup"
               type="email"
               name="email"
               placeholder="Email"
-			  ref={emailregister}
+              ref={emailregister}
               required
             />
+            <div className="div-passwordregister">
             <input
               className="input-loginsignup"
               type="password"
               placeholder="Mot de passe"
               required
               ref={passwordregister}
+              onChange={handlePasswordChange}
+              onKeyDown={handleKeyDown}
               minLength="8"
             />
+            {capsLockActivated && (
+              <div className="caps-lock-notification">
+                <p>Votre bouton MAJ est activé</p>
+              </div>
+            )}
+
+            </div>
+            
             <input
               className="input-loginsignup"
               type="password"
               placeholder="Confirmer le mot de passe"
               required
-			  ref={passwordAgain}
+              ref={passwordAgain}
             />
-			<div>
-			{endInscription && <h6 className="h6-inscription">Inscription Réussie</h6> }
-			</div>
-			
-			
-            <button className={endInscription ? "disappear" : "button-popup-window" } >S'inscrire</button>
+            <div>
+              {endInscription && <h6 className="h6-inscription">Inscription Réussie</h6>}
+            </div>
+
+
+            <button className={endInscription ? "disappear" : "button-popup-window"} >S'inscrire</button>
           </form>
         </div>
 
@@ -149,7 +183,7 @@ const Popup = (props) => {
               minLength={8}
             />
             <Link to="/forgot-password"> <p className="forgotpwmsg" >Mot de passe oublié ?</p></Link>
-            
+
             <p className="loginerrormsg">{error} </p>
             <button className="button-popup-window" disabled={isFetching}>{isFetching ? "Connexion" : "Se connecter"}</button>
           </form>
@@ -162,4 +196,5 @@ const Popup = (props) => {
 };
 
 export default Popup;
+
 
