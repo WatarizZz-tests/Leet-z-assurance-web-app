@@ -5,7 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Link } from "react-router-dom";
-// import required modules
 import { EffectFade, Pagination } from "swiper/modules";
 
 const HeroSlider = () => {
