@@ -1,6 +1,6 @@
-.red-container-acceuil{
+.red-container-acceuil {
     width: 100%;
-    background: linear-gradient(90deg,#ff7698,#f71b29,#ff7698);
+    background: linear-gradient(90deg, #ff7698, #f71b29, #ff7698);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +10,9 @@
 .red-container-acceuil h1 {
     color: white;
     font-weight: 500;
+    text-align: center;
 }
+
 .red-container-acceuil h3 {
     color: white;
     font-weight: 300;
@@ -32,9 +34,10 @@
     margin-bottom: 0.25rem;
     text-align: center;
 }
+
 .grey-container-acceuil p {
     /* font-family: Arboria_Black; */
-    
+
     text-align: center;
 }
 
@@ -47,6 +50,7 @@
     padding: 1rem;
     justify-content: center;
 }
+
 .white-container-acceuil h1 {
     color: #4c19a1;
     margin-bottom: 0.3rem;
@@ -56,12 +60,13 @@
     color: #4c19a1;
     font-size: 2.5rem;
     z-index: 99;
-    border:2px solid #4c19a1;
+    border: 2px solid #4c19a1;
     border-radius: 50%;
     padding: 0.8rem 1rem 0.65rem 1rem;
     margin-bottom: 1rem;
     transition: 0.3s ease-in-out;
 }
+
 .vignette:hover {
     transform: scale(1.1);
 }
@@ -78,7 +83,7 @@
 
 .red-container-acceuil2 {
     width: 100%;
-    background: linear-gradient(90deg,#ff7698,#f71b29,#ff7698);
+    background: linear-gradient(90deg, #ff7698, #f71b29, #ff7698);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -119,4 +124,36 @@
 
 .white-container-acceuil h1 {
     text-align: center;
+}
+
+
+@media screen and (max-width: 780px) {
+
+    .red-container-acceuil h1 {
+        font-size: 1.9rem;
+
+    }
+
+    .red-container-acceuil h3 {
+        font-size: 1.5rem;
+
+    }
+
+    .grey-container-acceuil h1 {
+        font-size: 1.9rem;
+    }
+
+    .grey-container-acceuil h3 {
+        font-size: 1.5rem;
+    }
+
+    .white-container-acceuil h1 {
+        font-size: 2rem;
+
+    }
+
+    .red-container-acceuil2 h1 {
+        font-size: 1.9rem;
+
+    }
 }
