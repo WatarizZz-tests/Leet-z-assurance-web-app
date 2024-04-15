@@ -127,3 +127,26 @@ label{
 	color: red;
 	font-size: 0.8rem;
 }
+
+.forgotpwmsg {
+	color: black;
+	font-size: 0.85rem;
+}
+
+.caps-lock-notification {
+	color: red;
+	text-align: center;
+	font-size: 0.75rem;
+	
+	height: 0;
+}
+
+.div-passwordregister {
+	display: flex;
+	flex-direction: column;
+	
+
+}
+.div-passwordregister input {
+	margin: 0 auto !important;
+}
