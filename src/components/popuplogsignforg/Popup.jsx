@@ -1,8 +1,10 @@
 import React, { useContext, useRef, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { IoMdClose } from "react-icons/io";
 import "./popup.css";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 const Popup = (props) => {
@@ -11,12 +13,15 @@ const Popup = (props) => {
   const [error, setError] = useState("");
   const BASE_URL = 'https://insurance-api-bic3.onrender.com';
 
+  const navigate = useNavigate();
+
 
   const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post( `${BASE_URL}/api/auth/login`, userCredential);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      navigate('/');
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err });
       if (err.response) {
@@ -103,11 +108,11 @@ const Popup = (props) => {
               placeholder="Mot de passe"
               required
               ref={passwordregister}
-              minLength="8"
+              minLength="6"
             />
             <input
               className="input-loginsignup"
-              type="password"
+              type="text"
               placeholder="Confirmer le mot de passe"
               required
 			  ref={passwordAgain}
@@ -143,6 +148,8 @@ const Popup = (props) => {
               ref={password}
               minLength={8}
             />
+            <Link to="/forgot-password"> <p className="forgotpwmsg" >Mot de passe oublié ?</p></Link>
+            
             <p className="loginerrormsg">{error} </p>
             <button className="button-popup-window" disabled={isFetching}>{isFetching ? "Connexion" : "Se connecter"}</button>
           </form>
@@ -155,3 +162,4 @@ const Popup = (props) => {
 };
 
 export default Popup;
+
