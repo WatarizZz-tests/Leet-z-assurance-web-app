@@ -183,9 +183,12 @@ const Popup = (props) => {
               minLength={8}
             />
             <Link to="/forgot-password"> <p className="forgotpwmsg" >Mot de passe oublié ?</p></Link>
-
+            <div className="loginerrormsg-box">
             <p className="loginerrormsg">{error} </p>
-            <button className="button-popup-window" disabled={isFetching}>{isFetching ? "Connexion" : "Se connecter"}</button>
+            </div>
+
+            
+            <button className="button-popup-window margin-top-errormsg" disabled={isFetching}>{isFetching ? "Connexion" : "Se connecter"}</button>
           </form>
         </div>
       </div>
@@ -196,5 +199,4 @@ const Popup = (props) => {
 };
 
 export default Popup;
-
 
