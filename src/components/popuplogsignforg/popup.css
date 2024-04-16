@@ -123,6 +123,10 @@ label{
 	display: none;
 }
 
+.loginerrormsg-box {
+	margin: 0;
+}
+
 .loginerrormsg {
 	color: red;
 	font-size: 0.8rem;
@@ -131,6 +135,7 @@ label{
 .forgotpwmsg {
 	color: black;
 	font-size: 0.85rem;
+	margin-bottom: 0;
 }
 
 .caps-lock-notification {
@@ -149,4 +154,8 @@ label{
 }
 .div-passwordregister input {
 	margin: 0 auto !important;
+}
+
+.margin-top-errormsg {
+	margin-top: 0 !important;
 }
