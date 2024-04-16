@@ -14,19 +14,24 @@ function ForgotPassword() {
 
     axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post(`${BASE_URL}/api/auth/forgot-password`, { email })
-            .then(res => {
-                if (res.status === 200) {
-                    setConfirmationMessage("Votre email de réinitialisation a été envoyé ! votre lien sera valide pour une durée de 24 heures");
+    e.preventDefault();
+    axios.post(`${BASE_URL}/api/auth/forgot-password`, { email })
+        .then(res => {
+            if (res.status === 200) {
+                setConfirmationMessage("Votre email de réinitialisation a été envoyé ! Votre lien sera valide pour une durée de 24 heures.");
+            } else {
+               
+                if (res.status === 500) {
+                    setConfirmationMessage("L'utilisateur n'a pas été trouvé. Veuillez vérifier l'adresse e-mail.");
                 } else {
                     console.log("Unexpected response status:", res.status);
                 }
-            })
-            .catch(err => {
-                console.error("Error:", err);
-            });
-    };
+            }
+        })
+        .catch(err => {
+            console.error("Error:", err);
+        });
+};
 
     return(
         <>
