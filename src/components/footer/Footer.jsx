@@ -1,19 +1,19 @@
 import React from 'react';
 import "./footer.css";
-import logofooter from "../../assets/leetz-logo-red.png";
+import logofooter1 from "../../assets/logo-no-background.png";
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <div className='footer-container'>
-        <p>Leet'z assurance est un service créé pour un projet de fin d'etude.</p>
-        <p>Le service a pour but de faire office d'intermediaire entre les clients et les professionnels du domaine de l'assurance automobile.</p>
-        <img src={logofooter} alt="logoenbas"/>
-
-        <h6>Copyright 2024 Leet'z assurance | Tous droits réservés.</h6>
-
-    
+        <p>{t("Don't Worry est un service créé pour un projet de fin d'étude.")}</p>
+        <p>{t("Le service a pour but de faire office d'intermédiaire entre les clients et les professionnels du domaine de l'assurance automobile.")}</p>
+        <img src={logofooter1} alt="logoenbas" />
+        <h6>{t("Copyright")}</h6>
     </div>
   )
 }
 
-export default Footer
+export default Footer;

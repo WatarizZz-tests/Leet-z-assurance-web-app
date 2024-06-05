@@ -14,6 +14,9 @@ import { format } from 'date-fns';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import fr from 'date-fns/locale/fr';
+import { Tooltip } from 'react-tippy'; 
+import 'react-tippy/dist/tippy.css';
+import { useTranslation } from 'react-i18next';
 
 const Accident = () => {
   const { user } = useContext(AuthContext);
@@ -27,16 +30,18 @@ const Accident = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const date = new Date();
   const BASE_URL = 'https://insurance-api-bic3.onrender.com';
+  const { t } = useTranslation();
 
 
   const firebaseConfig = {
-    apiKey: "AIzaSyBvAJdRKvRqYFq1wxAuo1jSkK_02BYYJDM",
+    apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
     authDomain: "assurance-storage-6514b.firebaseapp.com",
     projectId: "assurance-storage-6514b",
     storageBucket: "assurance-storage-6514b.appspot.com",
     messagingSenderId: "464629593424",
     appId: "1:464629593424:web:5443bd3e48868aa2a06855"
   };
+  
 
   const firebaseApp = initializeApp(firebaseConfig);
   const storage = getStorage(firebaseApp);
@@ -280,7 +285,7 @@ const Accident = () => {
       <Header />
       <DeclarationSlider />
       <div className="separationavectexte">
-        <h1>Veuillez remplir le formulaire ci-dessous</h1>
+        <h1>{t('Veuillez remplir le formulaire ci-dessous')}</h1>
       </div>
 
       <div
@@ -301,48 +306,53 @@ const Accident = () => {
                 }}
               >
                 <div className="choice-insurance">
-                  <p>quel est votre assureur automobile ?</p>
-                  <select
-                    required
-                    className="select"
-                    name="assurances"
-                    id="assurances"
-                    onChange={(e) => setAssurance(e.target.value)}
-                  >
-                    <option value="SAA">Voir les choix</option>
-                    <option value="SAA">SAA</option>
-                    <option value="CAAR">CAAR</option>
-                    <option value="GAM">GAM</option>
-                    <option value="TRUST">TRUST</option>
-                    <option value="CAAT">CAAT</option>
-                    <option value="ALLIANCE">ALLIANCE</option>
-                  </select>
+                  <p>{t('quel est votre assureur automobile ?')}</p>
+                  <Tooltip title={t('assureurs')} position="right">
+                    <select
+                      required
+                      className="select"
+                      name="assurances"
+                      id="assurances"
+                      onChange={(e) => setAssurance(e.target.value)}
+                    >
+                      <option value="SAA">{t('Voir les choix')}</option>
+                      <option value="SAA">SAA</option>
+                      <option value="CAAR">CAAR</option>
+                      <option value="GAM">GAM</option>
+                      <option value="TRUST">TRUST</option>
+                      <option value="CAAT">CAAT</option>
+                      <option value="ALLIANCE">ALLIANCE</option>
+
+                    </select>
+                  </Tooltip>
                 </div>
                 <div className="nometprenom-declarationaccident">
                   <div className="labelandinput-nometprenom-declarationaccident">
-                    <label>Nom</label>
+                    <label><Tooltip title={t('prenom-form')} position="left">
+                      {t('Nom')}
+                    </Tooltip></label>
                     <input
-                      placeholder="Votre nom"
+                      placeholder={t('Nom')}
                       onChange={(e) => setNom(e.target.value)}
                       required
                     />
                   </div>
                   <div className="labelandinput-nometprenom-declarationaccident">
-                    <label>Prenom</label>
+                    <label><Tooltip title={t('nom-form')} position="right">{t('Prenom')}</Tooltip></label>
                     <input
-                      placeholder="Votre nom"
+                      placeholder={t('Prenom')}
                       onChange={(e) => setPrenom(e.target.value)}
                       required
                     />
                   </div>
                 </div>
                 <div className="numeropolice-declarationaccident">
-                  <label>n° police d'assurance</label>
+                  <label><Tooltip title={t('tip1')} position="left">{t('n° police d\'assurance')}</Tooltip></label>
                   <input onChange={(e) => setPolice(e.target.value)} required />
                 </div>
                 <div className="effetexp-declarationaccident ">
                   <div className="dateeffet-dateexpiration-declarationaccidente">
-                    <label>Date d'effet</label>
+                    <label><Tooltip title={t('tip2')} position="left">{t('Date d\'effet')}</Tooltip></label>
                     <DatePicker
                       required
                       selected={startDate}
@@ -352,92 +362,92 @@ const Accident = () => {
                     />
                   </div>
                   <div className="dateeffet-dateexpiration-declarationaccidente">
-                    <label>date d'expiration</label>
+                    <label><Tooltip title={t('tip3')} position="right">{t('date d\'expiration')}</Tooltip></label>
                     <DatePicker
                       required
                       selected={startDatee}
-                       onChange={handleDateeChange}
+                      onChange={handleDateeChange}
                       dateFormat="dd MMMM yyyy"
-                      locale={fr} 
+                      locale={fr}
                       minDate={startDate || undefined} // Set minDate to the start date
                     />
                   </div>
                 </div>
                 <div className="garanties-checkboxes">
-                  <h4>Garanties incluses dans votre police d'assurance</h4>
+                  <label className="text-not-moving-right"><Tooltip title={t('tip4')} position="left">{t('Garanties incluses dans votre police d\'assurance')}</Tooltip></label>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       checked={checked1}
-                      value="Tous risques"
+                      value='Tous risques'
                       onClick={functionOption1}
                     />
-                    <label>Tous risques</label>
+                    <label>{t('Tous risques')}</label>
                   </div>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="top"
                       checked={checked2}
-                      value="Dommages et Collisions"
+                      value='Dommages et Collisions'
                       onClick={functionOption2}
                     />
-                    <label>Dommages et Collisions</label>
+                    <label>{t('Dommages et Collisions')}</label>
                   </div>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="top"
                       checked={checked3}
-                      value="Avance sur recours"
+                      value='Avance sur recours'
                       onClick={functionOption3}
                     />
-                    <label>Avance sur recours</label>
+                    <label>{t('Avance sur recours')}</label>
                   </div>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="top"
-                      value="Bris de Glaces"
+                      value='Bris de Glaces'
                       checked={checked4}
                       onClick={functionOption4}
                     />
-                    <label>Bris de Glaces</label>
+                    <label>{t('Bris de Glaces')}</label>
                   </div>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="top"
-                      value="Vol"
+                      value='Vol'
                       checked={checked5}
                       onClick={functionOption5}
                     />
-                    <label>Vol</label>
+                    <label>{t('Vol')}</label>
                   </div>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="top"
-                      value="Incendie"
+                      value='Incendie'
                       checked={checked6}
                       onClick={functionOption6}
                     />
-                    <label>Incendie</label>
+                    <label>{t('Incendie')}</label>
                   </div>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="top"
-                      value="Autre"
+                      value='Autre'
                       checked={checked7}
                       onClick={functionOption7}
                     />
-                    <label>Autre</label>
+                     <label>{t('Autre')}</label>
                   </div>
                 </div>
                 <div className="nometprenom-declarationaccident">
                   <div className="dateeffet-dateexpiration-declarationaccidente">
-                    <label>Date de l'accident</label>
+                    <label><Tooltip title={t('tip5')} position="left">{t('Date de l\'accident')}</Tooltip></label>
                     <DatePicker
                       required
                       selected={startDateee}
@@ -447,67 +457,64 @@ const Accident = () => {
                     />
                   </div>
                   <div className="dateeffet-dateexpiration-declarationaccidente">
-                    <label>Lieu de l'accident</label>
+                    <label><Tooltip title={t('tip6')} position="right">{t('Lieu de l\'accident')}</Tooltip></label>
                     <input onChange={(e) => setLieu(e.target.value)} required />
                   </div>
                 </div>
                 <div className="garanties-checkboxes">
-                  <h4>Nature des dommages</h4>
+                  <label className="text-not-moving-right"><Tooltip title={t('tip7')} position="left">{t('Nature des dommages')}</Tooltip></label>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="middle"
-                      value="Accident sans adversaire"
+                      value='Accident sans adversaire'
                       checked={disabled1}
                       onClick={DateNotLieu}
-
-
                     />
-                    <label>Accident sans adversaire</label>
+                    <label>{t('Accident sans adversaire')}</label>
                   </div>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="middle"
-                      value="Accident avec adversaire"
+                      value='Accident avec adversaire'
                       checked={disabled2}
-
                       onClick={LieuNotDate}
                     />
-                    <label>Accident avec adversaire</label>
+                    <label>{t('Accident avec adversaire')}</label>
                   </div>
                 </div>
                 <div className="garanties-checkboxes">
-                  <h4>Etat du véhicule</h4>
+                  <label className="text-not-moving-right"><Tooltip title={t('tip8')} position="left">{t('Etat du véhicule')}</Tooltip></label>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="bottom"
-                      value="En marche"
+                      value='En marche'
                       onChange={EnMarche}
                       checked={disabled3}
                     />
-                    <label>En marche</label>
+                    <label>{t('En marche')}</label>
                   </div>
                   <div className="checkbox-container">
                     <input
                       type="checkbox"
                       id="bottom"
-                      value="immobilisé"
+                      value='immobilisé'
                       checked={disabled4}
                       onChange={Immobile}
                     />
-                    <label>immobilisé</label>
+                    <label>{t('immobilisé')}</label>
                   </div>
                 </div>
                 <div>
                   <h1 className="h1nearend">
-                    Photos de l'accident, permis, constat,carte grise
+                    <Tooltip title={t('tip9')} position="left">{t('photo-prop')}</Tooltip>
                   </h1>
                 </div>
                 <div className="uploaddropform">
                   <label htmlFor="files" className="label-file">
-                    Choisir vos fichiers
+                    {t('Choisir vos fichiers')}
                   </label>
                   <input
                     required
@@ -542,7 +549,7 @@ const Accident = () => {
                   )}
                 </div>
                 <div className="button-container-contactform">
-                  <button className="accident-form-button" disabled={isSubmitting}>{isSubmitting ? 'Envoi en cours...' : 'Envoyer'}</button>
+                  <button className="accident-form-button" disabled={isSubmitting}>{isSubmitting ? t('Envoi en cours...') : t('Envoyer')}</button>
                 </div>
                 <div className="margin-succ-msg">
                   <p className="succespostsentmsg">{successPostSent}</p>
@@ -557,7 +564,7 @@ const Accident = () => {
                 <IoWarningOutline className="disconnected-icons" />
                 <IoWarningOutline className="disconnected-icons" />
               </span>
-              <h1>veuillez vous connecter pour acceder a ce service.</h1>{" "}
+              <h1>{t('veuillez vous connecter pour acceder a ce service.')}</h1>{" "}
             </div>
           )}{" "}
         </div>

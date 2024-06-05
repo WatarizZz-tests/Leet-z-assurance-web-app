@@ -1,19 +1,19 @@
 import Header from "../../components/header/Header";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-import { useContext } from "react";
-import React, { useState, useEffect, useRef } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./demande.css";
 import Footer from "../../components/footer/Footer";
 import { IoMdClose } from "react-icons/io";
 import { ImCross } from "react-icons/im";
 import { MdDone } from "react-icons/md";
+import { useTranslation } from 'react-i18next';
 
 const Demande = () => {
-  const BASE_URL = 'https://insurance-api-bic3.onrender.com';
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const UP = "https://firebasestorage.googleapis.com/v0/b/assurance-storage-6514b.appspot.com/o/images%2F";
   const END = "?alt=media";
-  console.log(UP);
+  const { t } = useTranslation();
 
   const { user } = useContext(AuthContext);
 
@@ -40,22 +40,22 @@ const Demande = () => {
       <Header />
 
       <div className="userdemands__box">
-        <h1>Mes Demandes</h1>
+        <h1>{t('demandes')}</h1>
         <div className="table-responsive text-nowrap">
           <table className="table ">
             <thead>
               <tr>
-                <th scope="col">Nom</th>
-                <th scope="col">Prenom</th>
-                <th scope="col">Police d'assurance</th>
-                <th scope="col">Etat</th>
-                <th scope="col">Assurance</th>
-                <th scope="col">eff/exp</th>
-                <th scope="col">Garanties</th>
-                <th scope="col">Date et lieu de l'accident</th>
-                <th scope="col">Nature de l'accident</th>
-                <th scope="col">Etat du vehicule</th>
-                <th scope="col">Photos associées a l'accident</th>
+                <th scope="col">{t('Nom')}</th>
+                <th scope="col">{t('Prenom')}</th>
+                <th scope="col">{t('Police d\'assurance')}</th>
+                <th scope="col">{t('Etat')}</th>
+                <th scope="col">{t('Assurance')}</th>
+                <th scope="col">{t('eff/exp')}</th>
+                <th scope="col">{t('Garanties')}</th>
+                <th scope="col">{t('Date et lieu de l\'accident')}</th>
+                <th scope="col">{t('Nature de l\'accident')}</th>
+                <th scope="col">{t('Etat du vehicule')}</th>
+                <th scope="col">{t('Photos associées a l\'accident')}</th>
               </tr>
             </thead>
 
@@ -71,12 +71,12 @@ const Demande = () => {
                         {item.request == "notyet" && (
                           <p className="statereq-inside">
                             {" "}
-                            en cours <ImCross className="notdone" />{" "}
+                            {t('en cours')} <ImCross className="notdone" />{" "}
                           </p>
                         )}
                         {item.request == "done" && (
                           <p className="statereq-inside">
-                            Terminée <MdDone className="done" />{" "}
+                            {t('Terminée')} <MdDone className="done" />{" "}
                           </p>
                         )}
                       </td>
@@ -107,7 +107,7 @@ const Demande = () => {
                                 <img
                                   className="imgdemandes"
                                   src={UP + it + END}
-                                  alt="fichier non telechargé !" // Add alt attribute for accessibility
+                                  alt="fichier non telechargé !" 
                                   target="_blank"
                                 />
                               </a>

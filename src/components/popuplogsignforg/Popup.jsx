@@ -5,6 +5,7 @@ import "./popup.css";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 
 const Popup = (props) => {
@@ -12,7 +13,9 @@ const Popup = (props) => {
   const [popChecked, setPopChecked] = useState(false);
   const [error, setError] = useState("");
   const [capsLockActivated, setCapsLockActivated] = useState(false);
-  const BASE_URL = 'https://insurance-api-bic3.onrender.com';
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -28,9 +31,9 @@ const Popup = (props) => {
       if (err.response) {
         const { data } = err.response;
         if (data === "user not found") {
-          setError("Email incorrect");
+          setError(t('Email incorrect'));
         } else if (data === "wrong password") {
-          setError("Mot de passe incorrect");
+          setError(t('Mot de passe incorrect'));
         }
       }
     }
@@ -40,7 +43,7 @@ const Popup = (props) => {
     const password = e.target.value;
     if (!validatePassword(password)) {
 
-      passwordregister.current.setCustomValidity('Le mot de passe doit contenir au moins une majuscule et un chiffre.');
+      passwordregister.current.setCustomValidity(t('Le mot de passe doit contenir au moins une majuscule et un chiffre.'));
     } else {
 
       passwordregister.current.setCustomValidity('');
@@ -74,7 +77,7 @@ const Popup = (props) => {
   const handleClicke = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== passwordregister.current.value) {
-      passwordAgain.current.setCustomValidity("Le mot de passe ne correspond pas !");
+      passwordAgain.current.setCustomValidity(t('Le mot de passe ne correspond pas !'));
     } else {
       const user = {
         username: username.current.value,
@@ -107,13 +110,13 @@ const Popup = (props) => {
         <div className="signup">
           <form onSubmit={handleClicke}>
             <label htmlFor="chk" onClick={() => setPopChecked(!popChecked)} aria-hidden="true">
-              S'inscrire
+              {t('login-Sinscrire')}
             </label>
             <input
               className="input-loginsignup"
               type="text"
               name="username"
-              placeholder="Nom d'utilisateur"
+              placeholder={t('Nom dutilisateur')}
               required
               ref={username}
             />
@@ -121,7 +124,7 @@ const Popup = (props) => {
               className="input-loginsignup"
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t('Email')}
               ref={emailregister}
               required
             />
@@ -129,7 +132,7 @@ const Popup = (props) => {
             <input
               className="input-loginsignup"
               type="password"
-              placeholder="Mot de passe"
+              placeholder={t('Mot de passe')}
               required
               ref={passwordregister}
               onChange={handlePasswordChange}
@@ -138,7 +141,7 @@ const Popup = (props) => {
             />
             {capsLockActivated && (
               <div className="caps-lock-notification">
-                <p>Votre bouton MAJ est activé</p>
+                <p>{t('Votre bouton MAJ est activé')}</p>
               </div>
             )}
 
@@ -147,29 +150,29 @@ const Popup = (props) => {
             <input
               className="input-loginsignup"
               type="password"
-              placeholder="Confirmer le mot de passe"
+              placeholder={t('Confirmer le mot de passe')}
               required
               ref={passwordAgain}
             />
             <div>
-              {endInscription && <h6 className="h6-inscription">Inscription Réussie</h6>}
+              {endInscription && <h6 className="h6-inscription">{t('Inscription Réussie')}</h6>}
             </div>
 
 
-            <button className={endInscription ? "disappear" : "button-popup-window"} >S'inscrire</button>
+            <button className={endInscription ? "disappear" : "button-popup-window"} >{t('login-Sinscrire')}</button>
           </form>
         </div>
 
         <div className="login" onSubmit={handleClick}>
           <form>
             <label className="laboon" onClick={() => setPopChecked(!popChecked)} htmlFor="chk" aria-hidden="true">
-              Se connecter
+            {t('Se connecter')}
             </label>
             <input
               className="input-loginsignup"
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t('Email')}
               required
               ref={email}
             />
@@ -177,18 +180,18 @@ const Popup = (props) => {
               className="input-loginsignup"
               type="password"
               name="pswd"
-              placeholder="mot de passe"
+              placeholder={t('Mot de passe')}
               required
               ref={password}
               minLength={8}
             />
-            <Link to="/forgot-password"> <p className="forgotpwmsg" >Mot de passe oublié ?</p></Link>
+            <Link to="/forgot-password"> <p className="forgotpwmsg" >{t('Mot de passe oublié ?')}</p></Link>
             <div className="loginerrormsg-box">
             <p className="loginerrormsg">{error} </p>
             </div>
 
             
-            <button className="button-popup-window margin-top-errormsg" disabled={isFetching}>{isFetching ? "Connexion" : "Se connecter"}</button>
+            <button className="button-popup-window margin-top-errormsg" disabled={isFetching}>{isFetching ? t('Connexion') : t('Se connecter')}</button>
           </form>
         </div>
       </div>

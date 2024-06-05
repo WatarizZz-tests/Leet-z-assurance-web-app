@@ -137,6 +137,14 @@ select option {
   background: linear-gradient(to left, var(--arrow-bg) 3em);
   color: white;
 }
+.text-not-moving-right {
+  margin: 0 !important;
+  padding: 0 !important;
+  justify-content: flex-start;
+  cursor: context-menu !important;
+  font-size: 1.5rem !important;
+  margin-bottom: 0.6rem !important ;
+}
 
 .numeropolice-declarationaccident {
   width: 100%;
