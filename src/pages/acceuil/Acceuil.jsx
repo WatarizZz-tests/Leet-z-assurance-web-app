@@ -7,11 +7,12 @@ import { FaLaptop } from "react-icons/fa";
 import { MdOutlineSmartphone } from "react-icons/md";
 import { IoDocumentText } from "react-icons/io5";
 import Footer from '../../components/footer/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const Acceuil = () => {
   const { t } = useTranslation();
+  const { lang } = useParams();
 
   return (
     <div>
@@ -41,7 +42,7 @@ const Acceuil = () => {
       </div>
       <div className='red-container-acceuil2'>
         <h1>{t('N\'attendez Plus')}</h1>
-        <Link to="/formulaireaccident">
+        <Link to={`/${lang}/formulaireaccident`}>
           <button className='red-container-button'>{t('faites votre déclaration')}</button>
         </Link>
       </div>
