@@ -6,11 +6,13 @@ import { MdAccountBox } from "react-icons/md";
 import { Link, NavLink, useParams } from "react-router-dom";
 import "./header.css";
 import logopic1 from "../../assets/logo-dontworry-blue-small2.png";
+import smnavlogo from "../../assets/sm-nav-logo.png";
 import Popup from "../popuplogsignforg/Popup";
 import { AuthContext } from "../../context/AuthContext";
 import { IoIosLogOut } from "react-icons/io";
 import LanguageSwitcher from './LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
+
 
 const navLinks = [
   {
@@ -151,6 +153,7 @@ const Header = () => {
 
             <div className="navigation" ref={menuRef} onClick={toggleMenu}>
               <div className="menu">
+                <img src={smnavlogo} alt="" className="image-nav-sm" />
                 {navLinks.map((item, index) => (
                   <NavLink
                     to={`/${lang}/${item.path}`}
@@ -162,12 +165,14 @@ const Header = () => {
                     {t(item.display)}
                   </NavLink>
                 ))}
+                
               </div>
             </div>
             {user ? (
               <div className="small-screen-user">
+                <LanguageSwitcher />
                 {" "}
-                -{user.username}{" "}
+                {user.username}{" "}
                 <Link to={`/${lang}/mesdemandes`}>
                   <button className="username-demands-button-small-screen">
                     {t('Mes demandes')}
@@ -182,6 +187,7 @@ const Header = () => {
               </div>
             ) : (
               <div className="header__top__right d-flex align-items-center justify-content-end gap-3 smallscreenloginsignin">
+                <div className="trytry"><LanguageSwitcher /></div>
                 <Link
                   onClick={() => setLoginPopup(true)}
                   className=" d-flex align-items-center gap-1"
