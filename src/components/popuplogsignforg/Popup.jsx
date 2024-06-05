@@ -14,6 +14,7 @@ const Popup = (props) => {
   const [error, setError] = useState("");
   const [capsLockActivated, setCapsLockActivated] = useState(false);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+  console.log(BASE_URL +"hello people");
   
   const { t } = useTranslation();
 
