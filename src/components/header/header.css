@@ -190,8 +190,10 @@
     .small-screen-user {
       display: none;
     }
+
     .image-nav-sm {
-        display: none;
+      display: none;
+    }
     
   }
   
