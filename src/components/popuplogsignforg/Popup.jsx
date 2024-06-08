@@ -71,7 +71,7 @@ const Popup = (props) => {
   const { user, isFetching, dispatch } = useContext(AuthContext);
   const handleClick = (e) => {
     e.preventDefault();
-    loginCall({ email: email.current.value, password: password.current.value }, dispatch);
+    loginCall({ email: email.current.value.toLowerCase(), password: password.current.value }, dispatch);
 
   };
 
@@ -82,7 +82,7 @@ const Popup = (props) => {
     } else {
       const user = {
         username: username.current.value,
-        email: emailregister.current.value,
+        email: emailregister.current.value.toLowerCase(),
         password: passwordregister.current.value,
       };
       try {
