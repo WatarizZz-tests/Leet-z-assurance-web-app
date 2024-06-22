@@ -4,9 +4,11 @@ import { useTranslation } from "react-i18next";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import "./forgotpasswordstyle.css";
+import { useParams } from "react-router-dom";
 
 function ForgotPassword() {
   const { t } = useTranslation();
+  const { lang } = useParams();
   const [email, setEmail] = useState("");
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -15,7 +17,8 @@ function ForgotPassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${BASE_URL}/api/auth/forgot-password`, { email })
+    const language = lang || 'fr'; // Default to 'fr' if lang is not provided
+    axios.post(`${BASE_URL}/api/auth/forgot-password?lang=${language}`, { email })
       .then(res => {
         if (res.status === 200) {
           setConfirmationMessage(t("forgot-pwVotre email de réinitialisation a été envoyé ! Votre lien sera valide pour une durée de 24 heures."));
@@ -24,8 +27,10 @@ function ForgotPassword() {
         }
       })
       .catch(err => {
-        if (err.response && err.response.status === 500) {
+        if (err.response && err.response.status === 404) {
           setConfirmationMessage(t("forgot-pwL'utilisateur n'a pas été trouvé. Veuillez vérifier l'adresse e-mail."));
+        } else if (err.response && err.response.status === 500) {
+          setConfirmationMessage(t("forgot-pwErreur lors de l'envoi de l'email."));
         } else {
           console.error("Error:", err);
         }
