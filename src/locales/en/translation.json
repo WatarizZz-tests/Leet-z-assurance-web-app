@@ -128,5 +128,9 @@
     "Inscription Réussie": "Inscription Réussie",
     "Se connecter": "Se connecter",
     "Mot de passe oublié ?": "Mot de passe oublié ?",
-    "Connexion": "Connexion"
+    "Connexion": "Connexion",
+    "email_already_registered": "Email déjà enregistré",
+    "username_already_taken": "Nom d'utilisateur déjà pris",
+    "generic_error": "Une erreur s'est produite. Veuillez réessayer.",
+    "inscription_reussie": "Inscription Réussie"
 }
