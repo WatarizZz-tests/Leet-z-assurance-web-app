@@ -128,5 +128,9 @@
     "Inscription Réussie": "تم التسجيل بنجاح",
     "Se connecter": "تسجيل الدخول",
     "Mot de passe oublié ?": "هل نسيت كلمة المرور؟",
-    "Connexion": "جاري تسجيل الدخول"
+    "Connexion": "جاري تسجيل الدخول",
+    "email_already_registered": "البريد الإلكتروني مسجل بالفعل",
+    "username_already_taken": "اسم المستخدم مأخوذ بالفعل",
+    "generic_error": "حدث خطأ. حاول مرة اخرى.",
+    "inscription_reussie": "تم التسجيل بنجاح"
 }
