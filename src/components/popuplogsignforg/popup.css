@@ -95,7 +95,7 @@ label{
 	
 	background: #eee;
 	border-radius: 60% / 10%;
-	transform: translateY(-155px);
+	transform: translateY(-135px);
 	transition: .8s ease-in-out;
 }
 .login label{
@@ -117,6 +117,7 @@ label{
 .h6-inscription {
 	text-align: center;
 	color: rgb(24, 160, 24);
+	font-size: 0.9rem;
 }
 
 .disappear {
@@ -158,4 +159,15 @@ label{
 
 .margin-top-errormsg {
 	margin-top: 0 !important;
+}
+
+
+.register-label-popup {
+	margin: 1.5rem auto 0 auto;
+	padding-bottom: none;
+	
+}
+
+.error {
+	color: red;
 }
